@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<nav>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</nav>
+<div class="jumbotron">
+    <form method="post">
+    {{ form.hidden_tag() }}
+    {{ form.name.label }} {{ form.name }} <br>
+    {{ form.cast.label }} {{ form.cast }} <br>
+    {{ form.genre.label }} {{ form.genre }} <br>
+    {{ form.rating.label }} {{ form.rating }} <br>
+    {{ form.submit() }}
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ form.hidden_tag() }}
+{{ form.name.label }} {{ form.name }}
+{{ form.cast.label }} {{ form.cast }}
+{{ form.genre.label }} {{ form.genre}}
+{{ form.submit }}
+
+{% endblock %}

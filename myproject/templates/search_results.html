@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for movie in movie_details %}
+
+{% if current_user.id == movie.user_id%}
+<h1> Movie Name :- {{ movie.name }}</h1>
+<h1> Posted Date :- {{ movie.date }}</h1>
+<h1> Movie Cast {{ movie.cast }}</h1>
+<h1> Movie Rating :- {{ movie.rating }}</h1>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

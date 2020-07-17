@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ m.movie_id }}</h1>
+<h1>{{ m.user_id }}</h1>
+<h1>{{ mm.id}}</h1>
+<h1>{{ mm.name }}</h1>
+<h1>{{ mm.genre }}</h1>
+Hello
+
+{% for Result in R: %}
+{% if Result.user_id == current_user.id %}
+<h1> Movie Name :- {{ Result.name }}</h1>
+<h1> Posted Date :- {{ Result.date }}</h1>
+<h1> Movie Cast {{ Result.cast }}</h1>
+<h1> Movie Rating :- {{ Result.rating }}</h1>
+{% endif %}
+{% endfor %}
+
+{% endblock %}
