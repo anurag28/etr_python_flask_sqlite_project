@@ -1,7 +1,7 @@
 from flask import render_template, url_for, redirect, request, Blueprint, flash
 from flask_login import login_user, login_required, current_user, logout_user
 from myproject import db
-from myproject.models import User, Post
+from myproject.models import User, Movie
 from myproject.users.forms import RegistrationForm, LoginForm, UpdateUserForm
 from myproject.users.picture_handler import add_profile_pic
 
@@ -75,3 +75,9 @@ def account():
 
 
 # Posts
+@users.route("/<username>")
+def user_posts(username):
+    page = request.args.get('page', 1, type=int)
+    user = User.query.filter_by(username=username).first_or_404()
+    movie_posts = Movie.query.filter_by(audience=user).order_by(Movie.date.desc()).paginate(page=page, per_page=5)
+    return render_template('user_movie_posts.html', movie_posts=movie_posts, user=user)
