@@ -1,24 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid" align="center">
     <div class="jumbotron">
         <form method="post">
             {{ form.hidden_tag() }}
-            <div class="form-group">
-                {{ form.email.label }} {{ form.email }}<br>
-            </div>
-
-            <div class="form-group">
-                {{ form.password.label }} {{ form.password }}<br>
-            </div>
-
-            <div class="form-group">
-                {{ form.submit() }}
-            </div>
+            <table>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            {{ form.email.label }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            {{ form.email }}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            {{ form.password.label }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            {{ form.password }}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="">
+                            {{ form.submit(class='btn btn-primary') }}
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </form>
     </div>
-
 </div>
 
 

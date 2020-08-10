@@ -2,21 +2,82 @@
 
 
 {% block content %}
-<nav>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-</nav>
-<div class="jumbotron">
+
+<div class="jumbotron" align="center">
     <form method="post">
-    {{ form.hidden_tag() }}
-    {{ form.name.label }} {{ form.name }} <br>
-    {{ form.cast.label }} {{ form.cast }} <br>
-    {{ form.genre.label }} {{ form.genre }} <br>
-    {{ form.rating.label }} {{ form.rating }} <br>
-    {{ form.comment.label}} {{ form.comment}} <br>
-    {{ form.submit() }}
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+                <td>
+                    {{ form.name.label }}
+                </td>
+                <td>
+                    {{ form.name }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                   <p style="visibility: hidden;font-size: 5px">s</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.cast.label }}
+                </td>
+                <td>
+                    {{ form.cast }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                   <p style="visibility: hidden;font-size: 5px">s</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.genre.label }}
+                </td>
+                <td>
+                    {{ form.genre }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                   <p style="visibility: hidden;font-size: 5px">s</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.rating.label }}
+                </td>
+                <td>
+                    {{ form.rating }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                   <p style="visibility: hidden;font-size: 5px">s</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.comment.label}}
+                </td>
+                <td>
+                    {{ form.comment(style="min-width:187px" )}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                   <p style="visibility: hidden;font-size: 5px">s</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    {{ form.submit() }}
+                </td>
+            </tr>
+        </table>
     </form>
 </div>
 {% endblock %}

@@ -2,30 +2,97 @@
 
 {% block content %}
 <div class="container">
-    <div class="jumbotron">
+    <div class="jumbotron" align="center">
         <form method="post">
             {{ form.hidden_tag() }}
-            <div class="form-group">
-                {{ form.sender_email.label }} {{ form.sender_email }}<br>
-            </div>
+            <table style="align-content: center">
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            {{ form.sender_email.label }}<br>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            {{ form.sender_email(placeholder="Enter your valid email(Google)", width="200px", class="form-control") }}
+                        </div>
+                    </td>
+                </tr>
+                <tr style="height: 3px">
 
-            <div class="form-group">
-                {{ form.password.label }} {{ form.password }}<br>
-            </div>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            {{ form.password.label }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            {{ form.password(style="width:270px", class="form-control",placeholder="Enter Your Gmail Account Password") }}
+                        </div>
+                    </td>
+                </tr>
 
-            <div class="form-group">
-                {{ form.receiver_email.label }} {{ form.receiver_email }}<br>
-            </div>
-            <div class="form-group">
-                {{ form.subject.label }} {{ form.subject }}<br>
-            </div>
-            <div class="form-group">
-                {{ form.body.label }} {{ form.body }}<br>
-            </div>
+            <tr style="height: 3px">
 
-            <div class="form-group">
-                {{ form.submit() }}
-            </div>
+
+            </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            {{ form.receiver_email.label }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            {{ form.receiver_email(placeholder="Enter you friend''s valid email(Google)", class="form-control") }}
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style="height: 3px">
+
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            {{ form.subject.label }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            {{ form.subject(style="width:270px", class="form-control") }}
+                        </div>
+                    </td>
+                </tr>
+
+            <tr style="height: 3px">
+
+            </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            {{ form.body.label }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            {{ form.body(style="min-width:270px;min-height:200px;width:250px", class="form-control") }}
+                        </div>
+                    </td>
+                </tr>
+            <tr style="height: 3px">
+
+            </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            {{ form.submit(class='btn btn-primary') }}
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </form>
     </div>
 

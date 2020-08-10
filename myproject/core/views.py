@@ -30,7 +30,7 @@ def send_email(movie_id):
         receiver_email = form.receiver_email.data
         password = form.password.data
         subject = form.subject.data
-        body = f"Hey buddy,\n\n Here is an amazing movie you must watch\n {movie.name}\nGenre: {movie.genre}\n Starring{movie.cast}"
+        body = f"Hey buddy,\n\nHere is an amazing movie you must watch,\n{movie.name}\nGenre: {movie.genre}\nStarring{movie.cast}\n\nEnjoy!"
         message = f'Subject: {subject}\n\n{body}'
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
@@ -39,9 +39,8 @@ def send_email(movie_id):
         flash('Email sent successfully')
         return redirect(url_for('core.index'))
     elif request.method == 'GET':
-        form.sender_email = current_user.email
         form.subject.data = "Hey, don't forget to watch this movie"
-        form.body.data = f"Hey buddy,\n\n Here is an amazing movie you must watch\n {movie.name}\nGenre: {movie.genre}\n Starring{movie.cast}"
+        form.body.data = f"Hey buddy,\n\nHere is an amazing movie you must watch,\n{movie.name}\nGenre: {movie.genre}\nStarring{movie.cast}\n\nEnjoy!!"
     return render_template('sending_email.html', form=form)
 
 
