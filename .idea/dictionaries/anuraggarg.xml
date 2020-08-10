@@ -5,6 +5,7 @@
       <w>endblock</w>
       <w>filepath</w>
       <w>jumbotron</w>
+      <w>navbar</w>
       <w>sqlalchemy</w>
       <w>tablename</w>
     </words>
