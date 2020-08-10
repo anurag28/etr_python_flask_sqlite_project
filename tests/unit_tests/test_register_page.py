@@ -1,10 +1,15 @@
 from selenium import webdriver
+import requests
 
 
 def test_setup():
     global driver
     driver = webdriver.Chrome(
         executable_path="/Users/anuraggarg/Desktop/ETRVersion2/ETRVersion2/resources/webdrivers/chromedriver")
+
+def test_00_verify_register_endpoint_response_code():
+    response = requests.get('http://127.0.0.1:5000/register')
+    assert str(response.status_code) == '200'
 
 
 def test_01_launch():
