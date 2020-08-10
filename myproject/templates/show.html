@@ -2,20 +2,81 @@
 
 {% block content %}
 
-<h1>{{ m.movie_id }}</h1>
-<h1>{{ m.user_id }}</h1>
-<h1>{{ mm.id}}</h1>
-<h1>{{ mm.name }}</h1>
-<h1>{{ mm.genre }}</h1>
-Hello
+<script src="../static/Resources jQuery And CSS/jquery.min.js"></script>
+<script src="../static/Resources jQuery And CSS/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="../static/Resources jQuery And CSS/jquery.dataTables.min.css">
+<!--
+<link rel="stylesheet" href="http://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="http://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script> -->
+<script src="https://use.fontawesome.com/94a96f108e.js"></script>
 
-{% for Result in R: %}
-{% if Result.user_id == current_user.id %}
-<h1> Movie Name :- {{ Result.name }}</h1>
-<h1> Posted Date :- {{ Result.date }}</h1>
-<h1> Movie Cast {{ Result.cast }}</h1>
-<h1> Movie Rating :- {{ Result.rating }}</h1>
-{% endif %}
-{% endfor %}
+<script type="text/javascript">
+    $(document).ready( function () {
+    $('#AllPostedReview').DataTable({
+         language: {
+            searchPlaceholder: "Name, Cast, Genre, Rating"
+        }
+    });
+    $(document).ready(function() {
+    var dataTable = $('#AllPostedReview').dataTable();
+    $("#searchbox").keyup(function() {
+        dataTable.fnFilter(this.value);
+    });
+});
+
+} );
+</script>
+<style type="text/css">
+    .dataTables_filter {
+     display: none;
+}
+</style>
+<div class="container">
+    <div class="jumbotron">
+        <div class="form-group" style="width: 50%;">
+            <input type="text" id="searchbox" class="form-control" align="center" placeholder="Enter Name, Cast, Review, Rating, Date Posted">
+        </div>
+
+    <table id="AllPostedReview" class="display">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Cast</th>
+            <th>Genre</th>
+            <th>Rating</th>
+            <th>Posted Date</th>
+            <th style="max-width: 100px">Comment</th>
+            <th>View Full Post</th>
+            <th>Share</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for index, Result in R: %}
+            <tr>
+                <td>{{ index }}</td>
+                <td>{{ Result.name }}</td>
+                <td> {{ Result.cast }}</td>
+                <td>{{ Result.genre}}</td>
+                <td> {{ Result.rating }}</td>
+                <td style="max-width: 100px">{{ Result.review }}</td>
+                <td> {{ Result.date.strftime('%Y-%m-%d') }}</td>
+                <td>
+                    <a href="{{ url_for('movie.movie_post', movie_id=Result.id) }}" >
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for('core.send_email', movie_id=Result.id) }}" style="text-decoration: none;color: black">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    </div>
+</div>
 
 {% endblock %}

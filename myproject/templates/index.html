@@ -12,18 +12,35 @@
     {% for post in movie_posts.items %}
 
     <div class="card" >
-
       <div class="card-body">
-
-
-        <h2><a class="card-title" href="  {{ url_for('movie.movie_post', movie_id=post.id) }}">{{ post.name }}</a></h2>
-        <a href="{{ url_for('users.user_posts', username=post.audience.username) }}">Posted By: {{ post.audience.username }}</a>
-        <p>Posted on: {{ post.date.strftime('%Y-%m-%d') }}</p>
-        <p>Genre: {{ post.genre }}</p>
-        <p>I'm rating this movie: {{ post.rating }}</p>
-        <p>Cast: {{ post.cast }}</p>
-        <p class="card-text">{{ post.review[:10] }}...</p>
-        <a href="{{ url_for('movie.movie_post', movie_id=post.id) }}" class="btn btn-primary">Read Complete Post</a>
+        <h2>
+            <a class="card-title"  href="  {{ url_for('movie.movie_post', movie_id=post.id) }}">
+                {{ post.name }}
+            </a>
+        </h2>
+        <a style="text-decoration: none;color: black" href="{{ url_for('users.user_posts', username=post.audience.username) }}">
+            Posted By: {{ post.audience.username }}
+        </a>
+        <p>
+            Posted on: {{ post.date.strftime('%Y-%m-%d') }}
+        </p>
+          <!--
+        <p>
+            Genre: {{ post.genre }}
+        </p>
+        <p>
+            I'm rating this movie: {{ post.rating }}
+        </p>
+        <p>
+            Cast: {{ post.cast }}
+        </p>
+        -->
+        <p class="card-text">
+            {{ post.review[:10] }}...
+        </p>
+        <a href="{{ url_for('movie.movie_post', movie_id=post.id) }}" class="btn btn-primary">
+            Read Complete Post
+        </a>
       </div>
     </div>
 

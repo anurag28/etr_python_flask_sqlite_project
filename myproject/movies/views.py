@@ -6,6 +6,7 @@ from myproject.models import Movie, User
 from myproject.movies.forms import AddMovieForm, SearchMovieForm
 from flask_login import current_user, login_required
 from sqlalchemy import join
+from sqlalchemy import or_
 from sqlalchemy.sql import select
 
 movie = Blueprint('movie', __name__)
@@ -53,7 +54,7 @@ def delete_post(movie_id):
     return redirect(url_for('core.index'))
 
 
-@movie.route('/<int:movie_id>/update', methods=['GET'])
+@movie.route('/<int:movie_id>/update', methods=['GET','POST'])
 @login_required
 def update(movie_id):
     post_movie = Movie.query.get_or_404(movie_id)
@@ -67,8 +68,8 @@ def update(movie_id):
         post_movie.rating = form.rating.data
         post_movie.genre = form.genre.data
         db.session.commit()
-        flash("POst Updated")
-        return redirect('movie.movie_post', movie_id=post_movie.id)
+        flash("Post Updated")
+        return redirect(url_for('movie.movie_post', movie_id=post_movie.id))
     elif request.method == 'GET':
         form.name.data = post_movie.name
         form.cast.data = post_movie.cast
@@ -80,13 +81,6 @@ def update(movie_id):
 
 @movie.route('/search_movies', methods=['GET', 'POST'])
 def search_movies():
-    form = SearchMovieForm()
-
-    if form.validate_on_submit():
-        if form.name.data:
-            # movie_data = db.session.query(Movie.name, Post.date, Movie.cast, Movie.rating, Post.user_id).join(Post, Movie.id == Post.movie_id).filter_by(Movie.name == form.name.data).all()
-            #return redirect(url_for('movie.search_results', form.name.data))
-            return redirect(url_for('core.index'))
-    return render_template('search_movie.html', form=form)
-
-
+    searched_movie_data = Movie.query.all()
+    searched_movie_data_dict = enumerate(searched_movie_data, start=1)
+    return render_template('show.html', R=searched_movie_data_dict)
